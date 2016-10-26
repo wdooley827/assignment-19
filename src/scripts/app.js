@@ -5,7 +5,12 @@ const app = function() {
 
 	const Header = React.createClass({
 		render: () => {
-			return <h1>YOLO</h1>
+			return (
+				<div>
+					<h1>YOLO</h1>
+				   <a href="./about">Go To About Page</a>
+				</div>
+			)
 		}
 	})
 
