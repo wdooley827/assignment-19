@@ -9,7 +9,7 @@ Lightweight scaffolding and build tool to quickly and easily develop a web appli
 
 ##Getting started
 
-  - clone this repo with `git clone git@github.com:magentanova/tiy-starter-kit.git THE-LOCAL-FOLDER-YOU-WANT-TO-CREATE`
+  - clone this repo with `git clone git@github.com:TIY-Charleston-Front-End-Engineering/simple-server.git THE-LOCAL-FOLDER-YOU-WANT-TO-CREATE`
   - disconnect from my remote repo and point to your own (see [Publishing](#publishing))
   - `cd` into the local folder
   - `npm install`
