@@ -1,4 +1,7 @@
-const Backbone = require('Backbone')
+const ReactDOM = require('react-dom');
+const React = require('react')
+const Backbone = require('backbone');
 
-console.log(Backbone)
 document.querySelector('#app-container').innerHTML = `<h1>YOLO</h1>`
+
+new AppRouter()
