@@ -1,10 +1,71 @@
+@import "../../node_modules/margo-css/margo.scss";
+@import "../../node_modules/font-awesome/scss/font-awesome.scss";
+
+$dark-blue: rgba(44,62,80,1);
+$red: rgba(231,76,60,1);
+$off-white: rgba(236,240,241,1);
+$light-blue: rgba(52,152,219,1);
+$med-blue: rgba(41,128,185,1);
+
 * {
 	font-family: Helvetica, Arial, sans-serif;
 	box-sizing: border-box;
 }
 
-h1 {
-	font-size: 300px;
-	text-align: center;
-	color: fuchsia;
+html{
+	font-size: 20px;
+}
+
+input{
+	padding: 0;
+}
+
+.panel{
+	border: 2px $dark-blue solid;
+	.header{
+		padding: 15px;
+		background: $dark-blue;
+		> * {
+			margin: 0;
+			color: $off-white;
+		}
+	}
+
+	.body{
+		padding: 15px;
+	}
+	.submit-item{
+		margin: 10px auto;
+		text-align: center;
+		>* {
+			height: 38px;
+			line-height: 38px;
+			margin: 0;
+			vertical-align: top;
+		}
+	}
+}
+
+.todo-item input[type='checkbox']{
+	margin-right: 10px;
+	height: 24px;
+	width: 24px;
+}
+label > *{
+	display: inline-block;
+	line-height: 20px;
+	vertical-align: middle;
+	margin: 0;
+}
+
+.options{
+	i.fa-remove {
+		color: $red;
+		cursor: pointer;
+		&:hover{
+			opacity: .5;
+		}
+	}
+
+
 }
