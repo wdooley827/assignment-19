@@ -24,3 +24,5 @@ Lightweight scaffolding and build tool to quickly and easily integrate a React+B
 
 ##Publishing
   - add, commit and push per usual
+
+  
