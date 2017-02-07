@@ -10,7 +10,7 @@ Lightweight scaffolding and build tool to quickly and easily integrate a React+B
 
   - **starting inside the root of the project-directory** clone this repo with `git clone git@github.com:t3tools/simple-build-es6-scss.git «your-project-name»`
   - disconnect from my remote repo and point to your own
-    - `git remote remove master`
+    - `git remote remove origin`
     - `git remote add origin «url-to-your-repo»`
   - `npm install`
   - `npm run start`
