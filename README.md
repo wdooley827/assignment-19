@@ -1,4 +1,4 @@
-#Simple Taskrunner
+#Simple Build - ES6 + SCSS
 
 Lightweight scaffolding and build tool to quickly and easily integrate a React+Backbone build with another backend.
 
@@ -8,19 +8,17 @@ Lightweight scaffolding and build tool to quickly and easily integrate a React+B
 
 ##Getting started
 
-  - **starting inside the root of the project-directory** clone this repo with `git clone git@github.com:t3tools/simple-build-es6-scss.git .`
-  - disconnect from my remote repo and point to your own (see [Publishing](#publishing))
+  - **starting inside the root of the project-directory** clone this repo with `git clone git@github.com:t3tools/simple-build-es6-scss.git «your-project-name»`
+  - disconnect from my remote repo and point to your own
+    - `git remote remove master`
+    - `git remote add origin «url-to-your-repo»`
   - `npm install`
   - `npm run start`
   - that's it! open the `index.html` file and see your changes
 
 ##Workflow
-  - only files in `/public` will be served up to the browser.
-  - all `.html` pages are served from the `/views` folder
-  - all assets (CSS, JS, and images) are served from the `/public` folder
+  - all assets (CSS, JS, and images) are served from the `/dist` folder
   - you'll *only* write CSS and JS code in the files in the `/src` folder
-  - whenever you save while your local server is running (`npm run go`), your code in the `/src-client` folder will be read and transpiled into the `/public` folder.
-  - view and test your app at localhost:3000
 
 ##Publishing
   - add, commit and push per usual

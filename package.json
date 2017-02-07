@@ -1,5 +1,5 @@
 {
-  "name": "tiy-starter-kit",
+  "name": "simple-build-es6-scss",
   "version": "0.0.0",
   "description": "a lightweight build system for transpiling js & scss, browserifying and running a simple node server. auto-installs backbone and react",
   "main": "index.html",
