@@ -1,6 +1,6 @@
 #Simple Build - ES6 + SCSS
 
-Lightweight scaffolding and build tool to quickly and easily integrate a React+Backbone build with another backend.
+Lightweight scaffolding and build tool to quickly and easily integrate a ES6 and SCSS.
 
   - transpiles scss into css
   - transpiles es6 nto es5
@@ -13,7 +13,7 @@ Lightweight scaffolding and build tool to quickly and easily integrate a React+B
     - `git remote remove origin`
     - `git remote add origin «url-to-your-repo»`
   - `npm install`
-  - `npm run start`
+  - `npm run go`
   - that's it! open the `index.html` file and see your changes
 
 ##Workflow
