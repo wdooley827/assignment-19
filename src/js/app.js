@@ -1,99 +1,80 @@
-import $ from 'jquery'
-import { githubApiKey } from '../../secrets.js'
-
+//IMPORTS
+import $ from 'jquery';
+import { githubApiKey } from '../../secrets.js';
 
 var pageContent = document.querySelector('.page_content')
-var tabsContainer = document.querySelector('.tabcontent__list')
-    //${githubApiKey}
-  $.getJSON('https://api.github.com/users/wdooley827?access_token=70cf004c363aecad949cf44bbe62053e4ed5bd0f').then(function(serverRes){
-    // console.log(serverRes)
-    //wrong
-    var profileContainer = document.querySelector('.profileSideBar')
-    var profileObject = serverRes
-    var profileDiv = `
-    <div class="profileSideBar__info">
-      <div class="row">
-        <div class="col-xs-12">
+var search = document.querySelector('.searchBarInput')
+
+function renderContent(domEl, theRoute, theContent){
+  var currentUser = theRoute
+  if(currentUser === ''){
+    currentUser = "wdooley827"
+  }
+  var profileEl = $.getJSON(`https://api.github.com/users/${currentUser}?access_token=${githubApiKey}`)
+  var repositoryEl = $.getJSON(`https://api.github.com/users/${currentUser}/repos?access_token=${githubApiKey}`)
+
+
+    function buildProfileTemplate(profileApiData, repositoriesApiData){
+
+      var profileObject = profileApiData[0]
+      var repositoriesList = repositoriesApiData[0]
+      var createBioHtmlComponents =
+        `
           <div class="thumbnail">
             <img src=${profileObject.avatar_url}>
-            <div class="caption">
-              <h2>${profileObject.name}</h2>
-              <h3>${profileObject.login}</h3>
-              <p><a href="#" class="btn btn-primary profileBtn" role="button">Follow</a></p>
-              <p>Block or report user</p>
-              <hr>
-              <h4>${profileObject.company}</h4>
-              <h5>${profileObject.location}</h5>
-              <p>${profileObject.email}</p>
-              <a href="${profileObject.html_url}">${profileObject.html_url}</a>
+              <div class="caption">
+                <h2>${profileObject.name}</h2>
+                <h3>${profileObject.login}</h3>
+                <p><a href="#" class="btn btn-primary profileBtn" role="button">Follow</a></p>
+                <p>Block or report user</p>
+                <hr>
+                <h4>${profileObject.company}</h4>
+                <h5>${profileObject.location}</h5>
+                <p>${profileObject.email}</p>
+                <a href="${profileObject.html_url}">${profileObject.html_url}</a>
+              </div>
+          </div>
+        `
+      var createRepositoryHtmlComponents = repositoriesList.map(function(repositoryObj){
+        return `
+          <h1>${repositoryObj.name}</h1>
+          <h2>${repositoryObj.description}</h2>
+          <h2>${repositoryObj.language} || ${repositoryObj.created_at}</h2>
+          <hr>
+          `
+      }).join('')
 
+      let htmlHolder =
+        `
+          <div class="row">
+            <div class="col-xs-6 profile">
+              ${createBioHtmlComponents}
+            </div>
+            <div class="col-xs-6 repository">
+              ${createRepositoryHtmlComponents}
             </div>
           </div>
-        </div>
-      </div>
-    </div>`
+        `
+        return htmlHolder
+    }
 
-    profileContainer.innerHTML = profileDiv
-  })
 
-// Render the tab
-function renderActiveTab(theCurrentRoute){
-  var previousTab = document.querySelector('[class="tabcontent__tab active"]')
-  previousTab.classList.remove('active')
-
-  var currentTab = document.querySelector(`[data-route="${theCurrentRoute}"]`)
-  currentTab.classList.add('active')
-}
-
-// Render content on tab
-function renderContent(domEl, theRoute, theContent){
-
-  if(theRoute === 'overview'){
-    domEl.innerHTML = 'hello'
-  }
-  if(theRoute === 'repositories'){
-    function buildProfileTemplate(bioApiData, repositoriesApiData){
-      var bioList = bioApiData[0].results
-      return bioList
-      }
-      console.log(bioList)
-  }
-  if(theRoute === 'stars'){
-    domEl.innerHTML = 'oh hi'
-  }
-  if(theRoute === 'followers'){
-    domEl.innerHTML = 'oh heeeey'
-  }
-  if(theRoute === 'following'){
-    domEl.innerHTML = 'goodbye'
-  }
+    $.when(profileEl, repositoryEl).then(function(profileData, repositoryData){
+      domEl.innerHTML = buildProfileTemplate(profileData, repositoryData)
+    })
 }
 
 var controllerRouter = function(){
   var currentRoute = window.location.hash.slice(1)
-  //the fix
-  if (currentRoute === "overview"){
-    renderContent(pageContent, currentRoute)
-  }
-  if (currentRoute === "repositories"){
-    renderContent(pageContent, currentRoute)
-  }
-  if (currentRoute === "stars"){
-    renderContent(pageContent, currentRoute)
-  }
-  if (currentRoute === "followers"){
-    renderContent(pageContent, currentRoute)
-  }
-  if (currentRoute === "following"){
-    renderContent(pageContent, currentRoute)
-  }
-  renderActiveTab(currentRoute)
+  renderContent(pageContent, currentRoute)
 }
 
-tabsContainer.addEventListener('click',function(evt){
-  var clickedTab = evt.target
-  var route = clickedTab.dataset.route
-  window.location.hash = route
+search.addEventListener('keydown',function(evt){
+  if (evt.keyCode === 13){
+    var searchInput = evt.target.value
+    window.location.hash = searchInput
+    evt.target.value = ""
+  }
 })
 
 controllerRouter()
